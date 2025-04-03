@@ -7,10 +7,12 @@ const io = new Server({
   cors: {
     origin: "*",
     methods: ["GET", "POST"]
-  }
+  },
+  allowEIO3: true // false by default
 });
 
 io.on("connection", (socket) => {
+  console.log("connection received")
   socket.onAny((ev, message) => {
     console.log(ev, message);
     socket.broadcast.emit(ev, message);
