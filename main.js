@@ -14,7 +14,7 @@ const io = new Server({
 io.on("connection", (socket) => {
   console.log("connection received")
   socket.onAny((ev, message) => {
-    console.log(ev, message);
+    if (!config.get("silent")) console.log(ev, message);
     socket.broadcast.emit(ev, message);
   })
 });
